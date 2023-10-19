@@ -17,6 +17,8 @@ public class Cliente {
 
     private String nome;
 
+    private String cep;
+
     private String logradouro;
 
     private String complemento;
