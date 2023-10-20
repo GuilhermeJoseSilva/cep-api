@@ -1,6 +1,7 @@
 package com.br.service;
 
 import com.br.domain.Cliente;
+import com.br.dto.ClienteAtualizacaoRequest;
 import com.br.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,16 +56,16 @@ public class ClienteService {
         return repository.findByCep(cep);
     }
 
-    public Cliente atualizarCliente(Long id, String nome, String cep) {
+    public Cliente atualizarCliente(Long id, ClienteAtualizacaoRequest atualizacaoRequest) {
         Optional<Cliente> clienteExistente = repository.findById(id);
 
         if (clienteExistente.isPresent()) {
             var cliente = clienteExistente.get();
-            cliente.setNome(nome);
-            cliente.setCep(cep);
+            cliente.setNome(atualizacaoRequest.getNome());
+            cliente.setCep(atualizacaoRequest.getCep());
 
             // Atualização das informações do ViaCEP
-            Cliente infoViaCep = obterInformacoesViaCep(cep);
+            Cliente infoViaCep = obterInformacoesViaCep(atualizacaoRequest.getCep());
 
             if (infoViaCep != null) {
                 cliente.setLogradouro(infoViaCep.getLogradouro());

@@ -56,15 +56,18 @@ public class ClienteController {
 
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, ClienteAtualizacaoRequest request){
-        var clienteAtualizado = clienteService.atualizarCliente(id, request.getNome(), request.getCep());
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody ClienteAtualizacaoRequest atualizacaoRequest){
+        var clienteAtualizado = clienteService.atualizarCliente(id, atualizacaoRequest);
 
-        if (clienteAtualizado != null){
+        if (clienteAtualizado != null) {
             return ResponseEntity.ok(clienteAtualizado);
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+
 
 
     @DeleteMapping("/excluir/{id}")
