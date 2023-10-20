@@ -75,3 +75,20 @@ Exemplo de corpo da solicitação:
   "nome": "Nome do Cliente",
   "cep": "CEP do Cliente"
 }
+```
+
+
+## Endpoints da API
+
+- **GET /clientes/{id**: Consulta um cliente pelo ID.
+- **GET /clientes/todos**: Consulta todos os clientes.
+- **GET /clientes/porCep/{cep}**: Consulta um cliente pelo CEP.
+- **GET /clientes/porNome/{nome}**: Consulta um cliente pelo nome.
+- **DELETE /clientes/excluir/{id}**: Exclui um cliente pelo ID.
+- **PUT /clientes/atualizar/{id}**: Atualiza um cliente com base no ID e nas informações fornecidas no corpo da solicitação. Exemplo de corpo da solicitação:
+  ```json
+  {
+    "nome": "Novo Nome do Cliente",
+    "cep": "Novo CEP do Cliente"
+  }
+
