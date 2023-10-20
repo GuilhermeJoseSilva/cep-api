@@ -54,6 +54,17 @@ public class ClienteController {
         }
     }
 
+    @GetMapping("/porNome/{nome}")
+    public ResponseEntity<Cliente> obterClienteNome(@PathVariable String nome){
+        Optional<Cliente> cliente = clienteService.buscarPorNome(nome);
+
+        if ((cliente.isPresent())){
+            return ResponseEntity.ok(cliente.get());
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody ClienteAtualizacaoRequest atualizacaoRequest){

@@ -85,6 +85,10 @@ public class ClienteService {
         }
     }
 
+    public Optional<Cliente> buscarPorNome(String nome){
+        return repository.findByNome(nome);
+    }
+
     public void excluirCliente(Long id) {
         repository.deleteById(id);
     }
